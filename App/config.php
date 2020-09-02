@@ -6,10 +6,13 @@
 
 
 		// Home URL
-		'HOME_URL' => 'https://weather-comparison-app.herokuapp.com/',
+		'HOME_URL' => 'http://weather.test/',
 
 		// Custom css
 		"CUSTOM_CSS_PATH" => 'css/customStyle.css',
+
+		// Logs path
+		"LOGS_PATH" => 'logs/',
 
 		// JSON path
 		"JSON_MESSAGES_PATH" => 'App/messages.json',

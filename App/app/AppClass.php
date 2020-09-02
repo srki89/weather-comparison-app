@@ -2,12 +2,12 @@
 
 
 require_once 'App/app/ValidationClass.php';
+require_once 'App/app/LoggerClass.php';
 
 
 
 use App\Validation;
-use App\Content;
-use App\Subscriber;
+use App\Logger;
 
 
 class App{
@@ -51,18 +51,21 @@ class App{
 	**/
 	public function load(){
 
-
+			Logger::info(__CLASS__, "load", "Load page");
 
 			$request_url = $this->getUrl();
 
 			if($request_url === $this->homeUrl){
 					// Check submit form on index page
 					if(isset($_POST['submit'])){
+						Logger::info(__CLASS__, "load", "Form was submited");
 						$this->post();
 					}else{
+						Logger::info(__CLASS__, "load", "Load index template");
 						$this->getTemplate('INDEX');
 					}
 			}else{
+					Logger::info(__CLASS__, "load", "Load error404 template for URL: " . $request_url);
 					$this->getTemplate('404');
 			}
 
@@ -75,6 +78,7 @@ class App{
 	*	@return include index template
 	**/
 	private function getTemplate($templateName){
+			Logger::info(__CLASS__, "getTemplate", "Get template : " . $templateName);
 			//get templates from external file
 			$templates = include $this->templatesPath;
 			// include page template
@@ -89,7 +93,9 @@ class App{
 	* @return string URL
 	**/
 	private function getUrl(){
-			return 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+			$url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+			Logger::info(__CLASS__, "getUrl", "Get URL : " . $url);
+			return $url;
 	}
 
 	/**
@@ -98,10 +104,12 @@ class App{
 	**/
 	private function getJsonMessages(){
 			//get json messages
+			Logger::info(__CLASS__, "getJsonMessages", "Get JSON messages");
 			if(file_exists($this->jsonPath)){
 					$json = file_get_contents($this->jsonPath);
 					return json_decode($json);
 			}else{
+					Logger::error(__CLASS__, "getJsonMessages", "JSON file does not exist!");
 					return false;
 			}
 	}
@@ -111,6 +119,7 @@ class App{
 	* @return redirect to home page
 	**/
 	private function post(){
+			Logger::info(__CLASS__, "post", "Get POST data from form");
 			$errorMessages = $this->getJsonMessages();
 
 			$dep_sel = (integer)$_POST['use_dep'];
@@ -182,6 +191,7 @@ class App{
 			}
 
 			if(!isset($_SESSION['VALIDATION_ERROR'])){
+					Logger::info(__CLASS__, "post", "Input data is valid");
 					// Departure
 					if($dep_sel == 1){
 							// Departure geolocation
@@ -189,22 +199,28 @@ class App{
 							$departureData = $this->getAPIweather($this->apiWeather, $_SESSION['latitude_dep'], $_SESSION['longitude_dep']);
 							if($departureData["dewPointTemp"]){
 									$_SESSION['depData'] = $departureData;
+									Logger::info(__CLASS__, "post", "Departure weather information over geolocation: OK");
 							}else{
 									$_SESSION['GET_DATA_ERROR'][] = $errorMessages->DEPARTURE_GEO_ERROR;
+									Logger::info(__CLASS__, "post", "Departure weather information over geolocation: NOK");
 							}
 					}else{
 							// Departure address
 							// User use address
 							$geolocationDep = $this->getAPIgeocoding($this->apiGoecoding, $_SESSION['address_dep']);
 							if($geolocationDep){
+									Logger::info(__CLASS__, "post", "Departure geocoding: OK");
 									$departureData = $this->getAPIweather($this->apiWeather, $geolocationDep['latitude'], $geolocationDep['longitude']);
 									if(!empty($departureData["dewPointTemp"])){
 											$_SESSION['depData'] = $departureData;
+											Logger::info(__CLASS__, "post", "Departure weather information over geolocation: OK");
 									}else{
 											$_SESSION['GET_DATA_ERROR'][] = $errorMessages->DEPARTURE_GEO_ERROR;
+											Logger::info(__CLASS__, "post", "Departure weather information over geolocation: NOK");
 									}
 							}else{
 									$_SESSION['GEOCODING_DATA_ERROR'][] = $errorMessages->GEOCODING_DEP_DATA_ERROR;
+									Logger::info(__CLASS__, "post", "Departure geocoding: NOK! Address: " . $_SESSION['address_dep']);
 							}
 					}
 					// Destination
@@ -214,25 +230,33 @@ class App{
 							$destinationData = $this->getAPIweather($this->apiWeather, $_SESSION['latitude_des'], $_SESSION['longitude_des']);
 							if(!empty($destinationData["dewPointTemp"])){
 									$_SESSION['desData'] = $destinationData;
+									Logger::info(__CLASS__, "post", "Destination weather information over geolocation: OK");
 							}else{
 									$_SESSION['GET_DATA_ERROR'][] = $errorMessages->DESTINATION_GEO_ERROR;
+									Logger::info(__CLASS__, "post", "Destination weather information over geolocation: NOK");
 							}
 					}else{
 							// Destination address
 							// User use address
 							$geolocationDes = $this->getAPIgeocoding($this->apiGoecoding, $_SESSION['address_des']);
 							if($geolocationDes){
+									Logger::info(__CLASS__, "post", "Departure geocoding: OK");
 									$destinationData = $this->getAPIweather($this->apiWeather, $geolocationDes['latitude'], $geolocationDes['longitude']);
 									if(!empty($destinationData["dewPointTemp"])){
 											$_SESSION['desData'] = $destinationData;
+											Logger::info(__CLASS__, "post", "Destination weather information over geolocation: OK");
 									}else{
 											$_SESSION['GET_DATA_ERROR'][] = $errorMessages->DESTINATION_GEO_ERROR;
+											Logger::info(__CLASS__, "post", "Destination weather information over geolocation: NOK");
 									}
 							}else{
 									$_SESSION['GEOCODING_DATA_ERROR'][] = $errorMessages->GEOCODING_DES_DATA_ERROR;
+									Logger::info(__CLASS__, "post", "Destination geocoding: NOK! Address: " . $_SESSION['address_des']);
 							}
 					}
 
+			}else{
+					Logger::info(__CLASS__, "post", "Input data is not valid");
 			}
 
 		  header('Location: ' . $this->homeUrl);
@@ -245,6 +269,7 @@ class App{
 	* @return array or false
 	**/
 	private function getAPIgeocoding($apiRoute, $address){
+			Logger::info(__CLASS__, "getAPIgeocoding", "Geocoding start");
 			$result = false;
 			$address = urlencode($address);
 			$apiRoute = str_replace("!ADDRESS!", $address, $apiRoute);
@@ -268,6 +293,7 @@ class App{
 	* @return array $data
 	**/
 	private function getAPIweather($apiRoute, $latitude, $longitude){
+			Logger::info(__CLASS__, "getAPIweather", "Get weather info over geolocation");
 			// replace !LATITUDE!
 			$apiRoute = str_replace("!LATITUDE!", $latitude, $apiRoute);
 			// replace !LONGITUDE!
@@ -304,6 +330,7 @@ class App{
 	* @return array
 	**/
 	private function prepareStyleParams($block, $value){
+			Logger::info(__CLASS__, "prepareStyleParams", "Prepare padding bottom and opacity for sun, fog and cloud. Block: " . $block .". Value: " . $value);
 			$value = (float)$value;
 			$styleParameters = [];
 			switch($block){
