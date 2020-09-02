@@ -1,0 +1,15 @@
+{
+
+		"LAT_DEP_ERROR": "Departure Latitude does not have acceptable format! Example: 7.978000",
+		"LON_DEP_ERROR": "Departure Longitude does not have acceptable format! Example: 7.978000",
+		"ADDRESS_DEP_ERROR": "Departure address does not have acceptable format! Example: Banja Luka, BiH",
+		"LAT_DES_ERROR": "Destination Latitude does not have acceptable format! Example: 7.978000",
+		"LON_DES_ERROR": "Destination Longitude does not have acceptable format! Example: 7.978000",
+		"ADDRESS_DES_ERROR": "Destination address name does not have acceptable format! Example: Banja Luka, BiH",
+		"DESTINATION_GEO_ERROR": "We can not find destination over your latitude and longitude. Please try again and enter new Geolocation",
+		"DEPARTURE_GEO_ERROR": "We can not find departure over your latitude and longitude.Please try again and enter new Geolocation",
+		"DESTINATION_ADDRESS_ERROR": "We can not find destination over your latitude and longitude. Please try again and enter new Geolocation",
+		"DEPARTURE_ADDRESS_ERROR": "We can not find departure over your latitude and longitude.Please try again and enter new Geolocation",
+		"GEOCODING_DEP_DATA_ERROR": "Geocoding didn't find latitude and longitude over entered departure address. You can use departure geolocation or you can try again :) ",
+		"GEOCODING_DES_DATA_ERROR": "Geocoding didn't find latitude and longitude over entered destination address. You can use destination geolocation or you can try again :) "
+}
