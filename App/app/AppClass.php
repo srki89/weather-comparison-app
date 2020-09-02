@@ -33,7 +33,7 @@ class App{
 			//construct
 			// Start session
 			session_start();
-			
+
 			// get config from external file
 			$config = include $this->configPath;
 			$this->homeUrl = $config['HOME_URL'];
@@ -89,7 +89,7 @@ class App{
 	* @return string URL
 	**/
 	private function getUrl(){
-			return 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+			return 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 	}
 
 	/**

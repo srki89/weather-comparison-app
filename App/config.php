@@ -6,7 +6,7 @@
 
 
 		// Home URL
-		'HOME_URL' => 'https://weather-comparison-app.herokuapp.com',
+		'HOME_URL' => 'https://weather-comparison-app.herokuapp.com/',
 
 		// Custom css
 		"CUSTOM_CSS_PATH" => 'css/customStyle.css',
