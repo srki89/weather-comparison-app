@@ -15,9 +15,9 @@
 * 1. Get repo content and place it into your public folder
 * 2. Change config file: App/config.php
 
-## DEMO
+## Demo
 
-* [DEMO APP on heorku](https://weather-comparison-app.herokuapp.com/)
+* [Demo App (Heroku)](https://weather-comparison-app.herokuapp.com/)
 
 ## Author
 
