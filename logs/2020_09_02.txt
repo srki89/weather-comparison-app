@@ -144,3 +144,25 @@
 2020-09-02 23:37:55; INFO; ClassName: App; MethodName: getUrl; Msg: Get URL : http://weather.test/
 2020-09-02 23:37:55; INFO; ClassName: App; MethodName: load; Msg: Load index template
 2020-09-02 23:37:55; INFO; ClassName: App; MethodName: getTemplate; Msg: Get template : INDEX
+2020-09-02 23:45:01; INFO; ClassName: App; MethodName: load; Msg: Load page
+2020-09-02 23:45:01; INFO; ClassName: App; MethodName: getUrl; Msg: Get URL : http://weather.test/
+2020-09-02 23:45:01; INFO; ClassName: App; MethodName: load; Msg: Form was submited
+2020-09-02 23:45:01; INFO; ClassName: App; MethodName: post; Msg: Get POST data from form
+2020-09-02 23:45:01; INFO; ClassName: App; MethodName: getJsonMessages; Msg: Get JSON messages
+2020-09-02 23:45:01; INFO; ClassName: App; MethodName: post; Msg: Input data is valid
+2020-09-02 23:45:01; INFO; ClassName: App; MethodName: getAPIweather; Msg: Get weather info over geolocation
+2020-09-02 23:45:02; INFO; ClassName: App; MethodName: prepareStyleParams; Msg: Prepare padding bottom and opacity for sun, fog and cloud. Block: fog. Value: 0
+2020-09-02 23:45:02; INFO; ClassName: App; MethodName: prepareStyleParams; Msg: Prepare padding bottom and opacity for sun, fog and cloud. Block: lowClouds. Value: 24.2
+2020-09-02 23:45:02; INFO; ClassName: App; MethodName: prepareStyleParams; Msg: Prepare padding bottom and opacity for sun, fog and cloud. Block: mediumClouds. Value: 56.2
+2020-09-02 23:45:02; INFO; ClassName: App; MethodName: prepareStyleParams; Msg: Prepare padding bottom and opacity for sun, fog and cloud. Block: highClouds. Value: 95.3
+2020-09-02 23:45:02; INFO; ClassName: App; MethodName: post; Msg: Departure weather information over geolocation: OK
+2020-09-02 23:45:02; INFO; ClassName: App; MethodName: getAPIweather; Msg: Get weather info over geolocation
+2020-09-02 23:45:03; INFO; ClassName: App; MethodName: prepareStyleParams; Msg: Prepare padding bottom and opacity for sun, fog and cloud. Block: fog. Value: 0
+2020-09-02 23:45:03; INFO; ClassName: App; MethodName: prepareStyleParams; Msg: Prepare padding bottom and opacity for sun, fog and cloud. Block: lowClouds. Value: 15.6
+2020-09-02 23:45:03; INFO; ClassName: App; MethodName: prepareStyleParams; Msg: Prepare padding bottom and opacity for sun, fog and cloud. Block: mediumClouds. Value: 60.9
+2020-09-02 23:45:03; INFO; ClassName: App; MethodName: prepareStyleParams; Msg: Prepare padding bottom and opacity for sun, fog and cloud. Block: highClouds. Value: 88.3
+2020-09-02 23:45:03; INFO; ClassName: App; MethodName: post; Msg: Destination weather information over geolocation: OK
+2020-09-02 23:45:03; INFO; ClassName: App; MethodName: load; Msg: Load page
+2020-09-02 23:45:03; INFO; ClassName: App; MethodName: getUrl; Msg: Get URL : http://weather.test/
+2020-09-02 23:45:03; INFO; ClassName: App; MethodName: load; Msg: Load index template
+2020-09-02 23:45:03; INFO; ClassName: App; MethodName: getTemplate; Msg: Get template : INDEX

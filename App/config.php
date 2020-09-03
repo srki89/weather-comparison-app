@@ -25,7 +25,7 @@
 		"GET_WEATHER_API" => "http://api.met.no/weatherapi/locationforecast/1.9/?lat=!LATITUDE!;lon=!LONGITUDE!",
 
 		// Replace !ADDRESS! with real address
-		"GEOCODING_ADDRESS" => "http://api.positionstack.com/v1/forward?access_key=0d82025c81770dfb9b294f27340ac2c9&query=!ADDRESS!",
+		"GEOCODING_ADDRESS" => "http://api.positionstack.com/v1/forward?access_key=YOUR_API_KEY&query=!ADDRESS!",
 
 
 

@@ -4,7 +4,7 @@
 * No database.
 * Web app use teo API, one for weather information over geolocation and other for get geolocation over address.
 * Weather info API: http://api.met.no/weatherapi/locationforecast/1.9/?lat=!LATITUDE!;lon=!LONGITUDE!
-* Geocoding API: http://api.positionstack.com/v1/forward?access_key=0d82025c81770dfb9b294f27340ac2c9&query=!ADDRESS! (FREE LICENSE, 25.000 requests per month)
+* Geocoding API: http://api.positionstack.com/v1/forward?access_key=YOUR_API_KEY&query=!ADDRESS! (FREE LICENSE, 25.000 requests per month)
 
 ## Built With
 
